@@ -4,7 +4,7 @@ Heroku:
 https://railstasksystem.herokuapp.com/
 
 * 部署步驟：
-1. 新增 Procfile
+1. 在專案目錄下新增 Procfile
 加入底下內容:
 - web: bundle exec rails server -p $PORT
 - webpack: bin/webpack-dev-server
