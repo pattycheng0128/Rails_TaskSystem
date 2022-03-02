@@ -8,13 +8,13 @@
 
 <%= form_for(task) do |f| %>
   <fieldset>
-    <legend><%= task_name %></legend>
+    <legend class="text-center"><%= task_title %></legend>
     <div class="mb-3">
-      <%= f.label :name, class:"form-label" %>
+      <%= f.label :name , t('task.name'), class:"form-label" %>
       <%= f.text_field :name, class:"form-control" %>
     </div>
     <div class="mb-3">
-      <%= f.label :content, class:"form-label" %>
+      <%= f.label :content, t('task.content'), class:"form-label" %>
       <%= f.text_area :content, class:"form-control"%>
     </div>
     <div>
