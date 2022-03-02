@@ -15,6 +15,15 @@
             未完成
           </ul>
         </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            語系
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><%= link_to "中文版", :controller => controller_name, :action => action_name, :locale => "zh-TW" %></li>
+            <li><%= link_to "English", :controller => controller_name, :action => action_name, :locale => "en" %></li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>

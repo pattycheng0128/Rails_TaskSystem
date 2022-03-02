@@ -6,11 +6,11 @@
         <div class="card-group mt-2">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">任務名稱: <%= link_to task.name, task_path(task) %></h5>
-                <p class="card-text">內容: <%= task.content %></p>
+                <h5 class="card-title"><%= t('task.name') %>: <%= link_to task.name, task_path(task) %></h5>
+                <p class="card-text"><%= t('task.content') %>: <%= task.content %></p>
                 <div class="d-flex justify-content-between">
-                  <%= link_to "刪除", task_path(task), method: 'delete', class: "btn btn-danger"%>
-                  <%= link_to "編輯", edit_task_path(task), class: "btn btn-primary"%>
+                  <%= link_to t('task.delete'), task_path(task), method: 'delete', class: "btn btn-danger"%>
+                  <%= link_to t('task.edit'), edit_task_path(task), class: "btn btn-primary"%>
                 </div>
               </div>
             </div>
