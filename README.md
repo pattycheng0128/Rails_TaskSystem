@@ -12,6 +12,8 @@ https://railstasksystem.herokuapp.com/
 2. git push heroku master
 3. heroku run rake db:migrate
 4. heroku open
+5. heroku logs --tail 查詢log
+6. 其他指令 https://gizipp.com/reset-heroku-pg-database
 
 
 Frontend:
