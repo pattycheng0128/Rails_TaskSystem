@@ -1,8 +1,9 @@
 class TasksController < ApplicationController
-  before_action :find_task, only: [:show, :edit, :update, :destroy]
+  before_action :find_task, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @q = Task.all.order(:end_time).ransack(params[:q])
+    @q = Task.includes(:user).order(:end_time).ransack(params[:q])
     @tasks = @q.result(distinct: true)
   end
 
@@ -11,7 +12,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_param)
+    @task = current_user.tasks.build(task_param)
     if @task.save
       redirect_to tasks_path, notice: "任務新增成功"
     else
@@ -20,6 +21,7 @@ class TasksController < ApplicationController
   end
 
   def show
+    @task = Task.find(params[:id])
   end
 
   def edit
@@ -46,7 +48,7 @@ class TasksController < ApplicationController
   end
 
   def find_task
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 
 end
