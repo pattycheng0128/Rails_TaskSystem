@@ -1,9 +1,9 @@
 class Task < ApplicationRecord
   include AASM
-  
   validates :name, presence: true
   validates_uniqueness_of :name
   validate :valid_due_date?
+  belongs_to :user
 
   aasm column: 'state' do # default column: aasm_state
     state :pending, initial: true 
@@ -24,4 +24,5 @@ class Task < ApplicationRecord
       errors.add(:end_time, "must be greater than the current time")
     end
   end
+  
 end
