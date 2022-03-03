@@ -1,7 +1,6 @@
 class Task < ApplicationRecord
   include AASM
   validates :name, presence: true
-  validates_uniqueness_of :name
   validate :valid_due_date?
   belongs_to :user
 

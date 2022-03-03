@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :find_task, only: [:edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!
 
   def index
     @q = Task.includes(:user).order(:end_time).ransack(params[:q])
