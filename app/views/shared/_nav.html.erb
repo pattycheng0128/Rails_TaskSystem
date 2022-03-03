@@ -1,10 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <%= link_to "Navbar", tasks_path, class:"navbar-brand" %>
-    <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+    <%= search_form_for @q, class:"d-flex" do |f| %>
+      <%= f.search_field :name_cont, class:"form-control me-2", placeholder:"輸入任務名稱" %>
+      <%= f.submit "Search",class:"btn btn-outline-success"  %>
+    <% end %>
     <div class="d-flex justify-content-end">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown">

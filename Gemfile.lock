@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (5.2.0)
+      concurrent-ruby (~> 1.0)
     actioncable (6.1.4.6)
       actionpack (= 6.1.4.6)
       activesupport (= 6.1.4.6)
@@ -161,6 +163,10 @@ GEM
       rake (>= 0.13)
       thor (~> 1.0)
     rake (13.0.6)
+    ransack (2.5.0)
+      activerecord (>= 5.2.4)
+      activesupport (>= 5.2.4)
+      i18n
     rb-fsevent (0.11.1)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -242,6 +248,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  aasm (~> 5.2)
   bootsnap (>= 1.4.4)
   bootstrap-datepicker-rails (~> 1.9)
   byebug
@@ -255,6 +262,7 @@ DEPENDENCIES
   rails (~> 6.1.4, >= 6.1.4.6)
   rails-controller-testing
   rails-i18n (~> 6.0)
+  ransack (~> 2.5)
   rspec-rails
   sass-rails (>= 6)
   selenium-webdriver
