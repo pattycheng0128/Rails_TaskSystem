@@ -15,6 +15,7 @@ RSpec.describe TasksController do
       it "確認任務名稱" do
         task = create(:task)
         expect(task.name).to be_present
+        p "印出日期:#{task.end_time}"
       end
     end
   end

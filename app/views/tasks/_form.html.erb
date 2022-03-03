@@ -17,6 +17,10 @@
       <%= f.label :content, t('task.content'), class:"form-label" %>
       <%= f.text_area :content, class:"form-control"%>
     </div>
+    <div class="mb-3">
+      <%= f.label :end_time, class:"form-label" %>
+      <%= f.datetime_field :end_time, class:"form-control" %>
+    </div>
     <div>
       <%= f.submit %>
     </div>
