@@ -1,29 +1,24 @@
 <div class="container mt-3">
   <div class="row">
     <% @tasks.each do |task| %>
-      <div class="col-4">
-        <div class="card-group mt-2">
-            <div class="card">
-              <div class="card-body">
-                <% if user_signed_in? && (current_user.id == task.user_id) %>
-                  <h5 class="card-title"><%= t('task.name') %>: <%= link_to task.name, task_path(task) %></h5>
-                  <p class="card-text"><%= t('task.content') %>: <%= task.content %></p>
-                  <p class="card-text">結束時間: <%= task.end_time %></p>
-                  <p class="card-text">執行狀態: <%= task.state %></p> 
-                  <div class="d-flex justify-content-between">
-                    <%= link_to t('task.delete'), task_path(task), method: 'delete', class: "btn btn-danger"%>
-                    <%= link_to t('task.edit'), edit_task_path(task), class: "btn btn-primary"%>
-                  </div>
-                <% else %>
-                  <h5 class="card-title"><%= t('task.name') %>: <%= link_to task.name, task_path(task) %></h5>
-                  <p class="card-text"><%= t('task.content') %>: <%= task.content %></p>
-                  <p class="card-text">結束時間: <%= task.end_time %></p>
-                  <p class="card-text">執行狀態: <%= task.state %></p>
-                <% end %>
+      <% if current_user.id == task.user_id %>
+        <div class="col-4">
+          <div class="card-group mt-2">
+              <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><%= t('task.name') %>: <%= link_to task.name, task_path(task) %></h5>
+                    <p class="card-text"><%= t('task.content') %>: <%= task.content %></p>
+                    <p class="card-text">結束時間: <%= task.end_time %></p>
+                    <p class="card-text">執行狀態: <%= task.state %></p> 
+                    <div class="d-flex justify-content-between">
+                      <%= link_to t('task.delete'), task_path(task), method: 'delete', class: "btn btn-danger"%>
+                      <%= link_to t('task.edit'), edit_task_path(task), class: "btn btn-primary"%>
+                    </div>
+                </div>
               </div>
-            </div>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
