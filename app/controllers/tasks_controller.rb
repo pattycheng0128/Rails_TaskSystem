@@ -2,7 +2,8 @@ class TasksController < ApplicationController
   before_action :find_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = Task.all.order(:end_time)
+    @q = Task.all.order(:end_time).ransack(params[:q])
+    @tasks = @q.result(distinct: true)
   end
 
   def new
@@ -41,7 +42,7 @@ class TasksController < ApplicationController
 
   private
   def task_param
-    params.require(:task).permit(:name, :content, :end_time)
+    params.require(:task).permit(:name, :content, :end_time, :state)
   end
 
   def find_task

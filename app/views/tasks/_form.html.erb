@@ -18,6 +18,10 @@
       <%= f.text_area :content, class:"form-control"%>
     </div>
     <div class="mb-3">
+      <%= f.label :state, class:"form-label" %>
+      <%= f.select :state, ["pending", "progressing", "done"], class:"form-control"%>
+    </div>
+    <div class="mb-3">
       <%= f.label :end_time, class:"form-label" %>
       <%= f.datetime_field :end_time, class:"form-control" %>
     </div>
