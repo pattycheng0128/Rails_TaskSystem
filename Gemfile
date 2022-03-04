@@ -31,6 +31,7 @@ gem 'rails-i18n', '~> 6.0'
 gem 'bootstrap-datepicker-rails', '~> 1.9'
 gem 'aasm', '~> 5.2'
 gem 'ransack', '~> 2.5'
+gem 'kaminari'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

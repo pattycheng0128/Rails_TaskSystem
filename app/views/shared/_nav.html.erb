@@ -7,6 +7,11 @@
     <% end %>
     <div class="d-flex justify-content-end">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Hi! <%= current_user.username %></a>
+          </li>
+        <% end %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             會員
@@ -19,15 +24,6 @@
               <%= link_to "註冊", sign_up_path, class: "dropdown-item" %>
               <%= link_to "登入", sign_in_path, class: "dropdown-item" %>
             <% end %>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            語系
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><%= link_to "中文版", :controller => controller_name, :action => action_name, :locale => "zh-TW" %></li>
-            <li><%= link_to "English", :controller => controller_name, :action => action_name, :locale => "en" %></li>
           </ul>
         </li>
       </ul>
