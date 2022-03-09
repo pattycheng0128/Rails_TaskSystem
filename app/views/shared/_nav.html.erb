@@ -9,7 +9,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <% if user_signed_in? %>
           <li class="nav-item">
-            <a class="nav-link" href="#">Hi! <%= current_user.username %></a>
+            <a class="nav-link" href="#">Hi! <%= current_user.email %></a>
           </li>
         <% end %>
         <li class="nav-item dropdown">
@@ -19,10 +19,10 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <% if user_signed_in? %>
               <li><%= link_to "新增任務", new_task_path, class: "dropdown-item" %></li>
-              <li><%= link_to "登出", sign_out_path, method: 'delete', class: "dropdown-item"%></li>
+              <li><%= link_to "登出", destroy_user_session_path, method: 'delete', class: "dropdown-item"%></li>
             <% else %>
-              <%= link_to "註冊", sign_up_path, class: "dropdown-item" %>
-              <%= link_to "登入", sign_in_path, class: "dropdown-item" %>
+              <%= link_to "註冊", new_user_registration_path, class: "dropdown-item" %>
+              <%= link_to "登入", new_user_session_path, class: "dropdown-item" %>
             <% end %>
           </ul>
         </li>
