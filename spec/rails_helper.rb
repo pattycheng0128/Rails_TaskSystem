@@ -64,6 +64,7 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include FactoryBot::Syntax::Methods
+  config.include Devise::Test::ControllerHelpers, type: :controller
 
 end
 
@@ -74,4 +75,3 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |file| require file } # <-- 加入這一行

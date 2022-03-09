@@ -10,23 +10,27 @@
   <fieldset>
     <legend class="text-center"><%= task_title %></legend>
     <div class="mb-3">
-      <%= f.label :name , t('task.name'), class:"form-label" %>
+      <%= f.label :name , "名稱", class:"form-label" %>
       <%= f.text_field :name, class:"form-control" %>
     </div>
     <div class="mb-3">
-      <%= f.label :content, t('task.content'), class:"form-label" %>
+      <%= f.label :content, "內容", class:"form-label" %>
       <%= f.text_area :content, class:"form-control"%>
     </div>
     <div class="mb-3">
-      <%= f.label :state, class:"form-label" %>
+      <%= f.label :state, "狀態", class:"form-label" %>
       <%= f.select :state, ["pending", "progressing", "done"], class:"form-control"%>
     </div>
     <div class="mb-3">
-      <%= f.label :end_time, class:"form-label" %>
+      <%= f.label :priority, "優先權", class:"form-label" %>
+      <%= f.select :priority, ["低", "中", "高"], class:"form-control"%>
+    </div>
+    <div class="mb-3">
+      <%= f.label :end_time, "結束時間", class:"form-label" %>
       <%= f.datetime_field :end_time, class:"form-control" %>
     </div>
     <div>
-      <%= f.submit %>
+      <%= f.submit btn_task %>
     </div>
   </fieldset>
 <% end %>

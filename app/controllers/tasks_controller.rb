@@ -1,10 +1,11 @@
 class TasksController < ApplicationController
   before_action :find_task, only: [:edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new]
 
   def index
     @q = Task.includes(:user).order(:end_time).ransack(params[:q])
     @tasks = @q.result(distinct: true)
+    # 加分頁會有問題, 會將所有的使用者任務做加總, 而不是針對某一個使用者去篩選任務數量
   end
 
   def new
@@ -44,7 +45,7 @@ class TasksController < ApplicationController
 
   private
   def task_param
-    params.require(:task).permit(:name, :content, :end_time, :state)
+    params.require(:task).permit(:name, :content, :end_time, :state, :priority)
   end
 
   def find_task
