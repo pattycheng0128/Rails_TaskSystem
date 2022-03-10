@@ -162,6 +162,109 @@ RSpec.describe TasksController do
   end
 
   #update
+  describe "PUT update" do
+    let(:author){create(:user)}
+    let(:not_author){create(:user)}
+
+    context "sign in as author" do
+      before {sign_in author}
+
+      context "when course has name" do
+        it "assigns @task" do
+          task = create(:task, user: author)
+
+          put :update, params: {id: task.id, task: {name: "task1", content: "bar", end_time: "2022-08-09"}}
+          expect(assigns[:task]).to eq(task)
+        end
+
+        it "changes value" do
+          task  = create(:task, user: author)
+
+          put :update, params: {id: task.id, task: {name: "task1", content: "bar2", end_time: "2022-08-09"}}
+          expect(assigns[:task]).to eq(task)
+          expect(assigns[:task].content).to eq("bar2")
+        end
+
+        it "redirects to tasks_path" do
+          task = create(:task, user: author)
+
+          put :update, params: {id: task.id, task: {name: "task1", content: "bar2", end_time: "2022-08-09"}}
+          expect(response).to redirect_to tasks_path
+        end
+      end
+
+      context "when task doesn't have name" do
+        it "doesn't update a record" do
+          task = create(:task, user: author)
+
+          put :update, params: {id: task.id, task: {name: "", content: "hi", end_time: "2022-08-09"}}
+          expect(task.content).not_to eq("hi")
+        end
+
+        it "render edit template" do
+          task = create(:task, user: author)
+
+          put :update, params: {id: task.id, task: {name: "",content: "hi", end_time: "2022-08-09"}}
+          expect(response).to render_template("edit")
+        end
+      end
+    end
+
+    context "sign in not as author" do
+      before {sign_in not_author}
+
+      it "raise an error" do
+        task = create(:task, user: author)
+
+        expect do
+          put :update, params: {id: task.id, task: {name: "",content: "hi", end_time: "2022-08-09"}}
+        end.to raise_error ActiveRecord::RecordNotFound
+      end
+
+    end
+  end
+
+  # delete
+  describe "DELETE destroy" do
+    let(:author) {create(:user)}
+    let(:not_author) {create(:user)}
+
+    context "when sign in as author" do
+      before{sign_in author}
+
+      it "assigns as task" do
+        task = create(:task, user: author)
+        delete :destroy, params: {id: task.id}
+        expect(assigns[:task]).to eq(task)
+      end
+
+      it "delete a record" do
+        task = create(:task, user: author)
+
+        expect do
+          delete :destroy, params: {id: task.id}
+        end.to change {Task.count}.by(-1)
+      end
+
+      it "redirects to tasks_path" do
+        task = create(:task, user: author)
+        delete :destroy, params: {id: task.id}
+        expect(response).to redirect_to tasks_path
+      end
+    end
+
+    context "when sign in as not author" do
+      before{sign_in not_author}
+
+      it "raises an error" do
+        task = create(:task, user: author)
+
+        expect do
+          delete :destroy, params: {id: task.id}
+        end.to raise_error ActiveRecord::RecordNotFound
+      end
+    end
+  end
 
   
 end
